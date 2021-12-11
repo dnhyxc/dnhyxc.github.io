@@ -1453,7 +1453,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      <h3 id="webpack5"><a href="#webpack5" class="headerlink" title="webpack5"></a>webpack5</h3><h4 id="webpack-安装"><a href="#webpack-安装" class="headerlink" title="webpack 安装"></a>webpack 安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack webpack-cli webpack-dev-server -D</span><br></pre></td></tr></table></figure>
+      <h3 id="webpack5"><a href="#webpack5" class="headerlink" title="webpack5"></a>webpack5</h3><h4 id="webpack-安装"><a href="#webpack-安装" class="headerlink" title="webpack 安装"></a>webpack 安装</h4><p>1、注意尽量不要在全局安装 webpack、在全局安装会把 webpack 版本锁死，可能导致其它项目打包出错。</p>
+<p>2、可以通过如下方式在局部安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir webpack-test</span><br><span class="line"></span><br><span class="line">cd webpack-test</span><br><span class="line"></span><br><span class="line">npm init -y</span><br><span class="line"></span><br><span class="line">npm i webpack webpack-cli webpack-dev-server -D</span><br></pre></td></tr></table></figure>
+<h4 id="entry-配置"><a href="#entry-配置" class="headerlink" title="entry 配置"></a>entry 配置</h4><p>1、entry 用于配置打包时的入口，其属性及配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">&quot;./src/index.js&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="output-配置"><a href="#output-配置" class="headerlink" title="output 配置"></a>output 配置</h4><p>1、output 用于配置打包的出口，其属性及配置方式如下：</p>
+<ul>
+<li><p>clean：用于清除上次打包生成的 dist 或 build 文件夹。</p>
+</li>
+<li><p>filename：用于配置打包输出的文件名称。</p>
+</li>
+<li><p>path：用于配置打包输出的文件夹路径。</p>
+</li>
+<li><p>assetModuleFilename：用于设置打包输出的资源模块（图片等）的文件名及路径。如：<code>assetModuleFilename: &quot;images/test.png&quot;</code> 就是将打包的资源模块输出到 dist 文件夹中的 images 文件夹下，名字为 test.png。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">    path: path.reslove(__dirname, <span class="string">&quot;./dist&quot;</span>),</span><br><span class="line">    clean: <span class="literal">true</span>,</span><br><span class="line">    assetModuleFilename: <span class="string">&quot;images/[contenthash][ext]&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>contenthash：表示根据文件的内容来生成一个 hash 字符串，ext 则表示文件的扩展名，这些都是 webpack 内置的写法。</p>
+</blockquote>
+<h4 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h4><p>1、webpack-dev-server 可以提供一个基本的 web server，并且具有 live reloading（实时重新加载）功能。</p>
+<p>2、具体属性及配置如下：</p>
+<ul>
+<li>static 该属性用于告知 webpack-dev-server 从什么位置查找文件，<code>static: &quot;./dist&quot;</code> 将告知其从 dist 目录下的文件作为 web 服务的根目录。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    <span class="keyword">static</span>: <span class="string">&quot;./dist&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>webpack-dev-server 在编译之后不会输出任何文件，而是将 bundle 文件保存到内存中，然后将它们 serve 到 server 中，就好像它们是挂载在 server 根路径上的真实文件一样。</p>
+</blockquote>
+<h3 id="webpack-插件"><a href="#webpack-插件" class="headerlink" title="webpack 插件"></a>webpack 插件</h3><h4 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h4><p>1、该插件可以让 webpack 在打包时自动生成 index.html，并自定将打包生成的 js 文件引入生成的 index.html 中。</p>
+<p>2、该插件属性及配置方式如下：</p>
+<ul>
+<li><p>template：该属性用于配置 webpack 打包生成 index.html 的模板。</p>
+</li>
+<li><p>filename：配置生成 html 的文件名。</p>
+</li>
+<li><p>inject：配置引入 script 标签的位置，默认是放在 header 中，属性值如果配置为 body，将会引入到 body 中。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">&quot;./index.html&quot;</span>,</span><br><span class="line">    filename: <span class="string">&quot;index.html&quot;</span>,</span><br><span class="line">    inject: <span class="string">&quot;body&quot;</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
       
       
 
@@ -1476,7 +1515,7 @@
     <div class="article-toc">
       <div class="toc-header">目录</div>
       <div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack5"><span class="toc-number">1.</span> <span class="toc-text">webpack5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack-%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">webpack 安装</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack5"><span class="toc-number">1.</span> <span class="toc-text">webpack5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack-%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">webpack 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#entry-%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.</span> <span class="toc-text">entry 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#output-%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">output 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack-dev-server"><span class="toc-number">1.4.</span> <span class="toc-text">webpack-dev-server</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack-%E6%8F%92%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">webpack 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#html-webpack-plugin"><span class="toc-number">2.1.</span> <span class="toc-text">html-webpack-plugin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">资源文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#loader"><span class="toc-number">3.1.</span> <span class="toc-text">loader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#loader-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.2.</span> <span class="toc-text">loader 的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90-css-%E8%B5%84%E6%BA%90"><span class="toc-number">3.3.</span> <span class="toc-text">解析 css 资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90-less-%E8%B5%84%E6%BA%90"><span class="toc-number">3.4.</span> <span class="toc-text">解析 less 资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E7%A6%BB-css"><span class="toc-number">3.5.</span> <span class="toc-text">抽离 css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9-css"><span class="toc-number">3.6.</span> <span class="toc-text">压缩 css</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">资源模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#asset-resource"><span class="toc-number">4.1.</span> <span class="toc-text">asset&#x2F;resource</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#asset-inline"><span class="toc-number">4.2.</span> <span class="toc-text">asset&#x2F;inline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#asset-source"><span class="toc-number">4.3.</span> <span class="toc-text">asset&#x2F;source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#asset"><span class="toc-number">4.4.</span> <span class="toc-text">asset</span></a></li></ol></li></ol>
       </div>
     </div>
   </div>
@@ -1862,23 +1901,15 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MSE</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MediaSource</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">browser</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">class</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">super</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1886,23 +1917,7 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">dva</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ts</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">eslint</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MSE</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MediaSource</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1922,7 +1937,39 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">dva</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ts</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">eslint</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">class</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">super</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">File</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1939,14 +1986,6 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">File</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
               
               <li class="article-tag-list-item">
