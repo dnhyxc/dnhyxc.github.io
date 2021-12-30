@@ -570,10 +570,6 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSE</a>
               </li>
               
@@ -598,6 +594,22 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">H5</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">FileReader</a>
               </li>
               
@@ -614,15 +626,15 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">File</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -650,22 +662,6 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H5</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">File</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Vue2</a>
               </li>
               
@@ -678,6 +674,10 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
               
@@ -686,12 +686,14 @@
           </div>
           <ul class="search-ul">
             <li class="search-li" q-repeat="items" q-show="isShow">
-              <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span
+              <div class="search-li-title">
+                <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span
                   q-text="title"></span></a>
-              <p class="search-time">
-                <i class="icon-calendar icon"></i>
-                <span q-text="date|dateformat"></span>
-              </p>
+                <p class="search-time">
+                  <i class="icon-calendar icon"></i>
+                  <span q-text="date|dateformat"></span>
+                </p>
+              </div>
               <p class="search-tag">
                 <i class="icon-price-tags icon"></i>
                 <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
