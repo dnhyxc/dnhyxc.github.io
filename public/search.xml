@@ -251,9 +251,9 @@
         <category>dva</category>
       </categories>
       <tags>
+        <tag>webpack</tag>
         <tag>JavaScript</tag>
         <tag>dva</tag>
-        <tag>webpack</tag>
         <tag>eslint</tag>
         <tag>qiankun</tag>
         <tag>TypeScript</tag>
@@ -2611,7 +2611,7 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&quot;webpack&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;html-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">&quot;./src/index.js&quot;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">&quot;[name].js&quot;</span>,</span><br><span class="line">    clean: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">      _: <span class="string">&quot;lodash&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  mode: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>以上配置从本质上来说，就是告诉 webpack，如果遇到了至少一处用到 <code>_</code> 变量的模块实例，那就将 lodash package 引入进来，并将其提供给需要用到它的模块。这其实就是 webpack 自动将 lodash 引入，并打包到 main.js 中了。</p>
+<p>以上配置从本质上来说，就是告诉 webpack，如果遇到了至少一处用到 <code>_</code> 变量的模块实例，那就自动将 lodash package 引入进来（无需开发者手动 npm install lodash），并将其提供给需要用到它的模块。这其实就是 webpack 自动将 lodash 引入，并打包到 main.js 中了。</p>
 </blockquote>
 <h4 id="细粒度-Shimming"><a href="#细粒度-Shimming" class="headerlink" title="细粒度 Shimming"></a>细粒度 Shimming</h4><p>1、在一些遗留模块依赖中，this 指向的是 window 对象，我们可以调整 index.js 文件内容进行测试：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.alert(<span class="string">&quot;hello webpack&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -2777,7 +2777,7 @@
 </ul>
 <p>2、要使用 AddAssetHtmlPlugin 需要安装 <code>add-asset-html-webpack-plugin</code>：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i add-asset-html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
-<h4 id="dll-完成配置"><a href="#dll-完成配置" class="headerlink" title="dll 完成配置"></a>dll 完成配置</h4><p>1、webpack.dll.config.js：</p>
+<h4 id="dll-完整配置"><a href="#dll-完整配置" class="headerlink" title="dll 完整配置"></a>dll 完整配置</h4><p>1、webpack.dll.config.js：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&quot;webpack&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  entry: [<span class="string">&quot;jquery&quot;</span>, <span class="string">&quot;lodash&quot;</span>],</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">&quot;[name].js&quot;</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&quot;dll&quot;</span>),</span><br><span class="line">    library: <span class="string">&quot;[name]_[hash]&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DllPlugin(&#123;</span><br><span class="line">      name: <span class="string">&quot;[name]_[hash]&quot;</span>,</span><br><span class="line">      path: path.resolve(__dirname, <span class="string">&quot;dll/manifest.json&quot;</span>),</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>2、webpack.config.js：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&quot;webpack&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&quot;html-webpack-plugin&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> AddAssetHtmlPlugin = <span class="built_in">require</span>(<span class="string">&quot;add-asset-html-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">&quot;./src/index.js&quot;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">&quot;[name][contenthash].js&quot;</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">      manifest: path.resolve(__dirname, <span class="string">&quot;./dll/manifest.json&quot;</span>),</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> AddAssetHtmlPlugin(&#123;</span><br><span class="line">      filepath: path.resolve(__dirname, <span class="string">&quot;./dll/main.js&quot;</span>),</span><br><span class="line">      publicPath: <span class="string">&quot;./&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    port: <span class="number">9000</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  mode: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -2856,18 +2856,16 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i eslint-loader -D</span><br></pre></td></tr></table></figure>
 <p>2、基本配置如下：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        use: [<span class="string">&quot;babel-loader&quot;</span>, <span class="string">&quot;eslint-loader&quot;</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    <span class="comment">// 关闭浏览器上出现的页面报错覆盖层</span></span><br><span class="line">    client: &#123;</span><br><span class="line">      overlay: <span class="literal">false</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：上述文件配置好之后，需要配置好下面的husky才能正常运行。</p>
-</blockquote>
 <h4 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h4><p>1、使用 husky 可以在提交代码前进行 eslint 检查。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i husky -D</span><br></pre></td></tr></table></figure>
 <p>2、husky 的使用方式：安装好 husky 之后，需要执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx husky install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm set-script prepare &quot;husky install&quot;</span><br><span class="line"></span><br><span class="line">npm run prepare</span><br><span class="line"></span><br><span class="line">npx husky add .husky&#x2F;pre-commit &quot;npm test&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：执行 <code>npm set-script prepare &quot;husky install&quot;</code> 之前，必须要先使用 <code>git init</code> 创建 <code>.git</code> 文件，否则将会执行失败。</p>
+</blockquote>
 <p>3、配置 package 脚本：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;prepare&quot;</span>: <span class="string">&quot;husky install&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4、在 生成的 .husky 文件中创建一个 pre-commit 文件，注意：不是放在 _ 下，而是与 _ 同级，pre-commit 具体内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx eslint .&#x2F;src</span><br></pre></td></tr></table></figure>
-<p>5、进行完以上步骤之后，husky 就已经配置完成了，此时可以执行 git commit 进行测试了。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">+   &quot;prepare&quot;: &quot;husky install&quot;,</span><br><span class="line">+   &quot;test&quot;: &quot;npx eslint ./src&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、进行完以上步骤之后，husky 就已经配置完成了，此时可以执行 git commit 进行测试了。</p>
 <h3 id="webpack-性能优化"><a href="#webpack-性能优化" class="headerlink" title="webpack 性能优化"></a>webpack 性能优化</h3><h4 id="通用环境优化"><a href="#通用环境优化" class="headerlink" title="通用环境优化"></a>通用环境优化</h4><p>1、将 loader 应用与最少数量的必要模块，即在不需要用到的地方尽量不去使用，如下代码就限制了 loader 的作用范围，只解析 src 下的 js 文件，这就提升了效率：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        include: path.resolve(__dirname, <span class="string">&quot;src&quot;</span>),</span><br><span class="line">        loader: <span class="string">&quot;babel-loader&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>2、引导（bootstrap）：每个额外的 loader/plugin 都有其启动时间，尽量少的使用工具。</p>
@@ -3018,7 +3016,7 @@
 <h3 id="安装-webpack"><a href="#安装-webpack" class="headerlink" title="安装 webpack"></a>安装 webpack</h3><h4 id="安装-webpack-webpack-cli-webpack-dev-server"><a href="#安装-webpack-webpack-cli-webpack-dev-server" class="headerlink" title="安装 webpack webpack-cli webpack-dev-server"></a>安装 webpack webpack-cli webpack-dev-server</h4><blockquote>
 <p>注意：webpack webpack-cli 下载的版本需要与全局的版本保持一致，防止出现不必要的错误，webpack-dev-server 版本不能下太高，否则可能出现兼容性错误。</p>
 </blockquote>
-<p>1，我本地 webpack webpack-cli 分别为：<a href="mailto:&#x77;&#x65;&#98;&#112;&#x61;&#x63;&#x6b;&#x40;&#x34;&#46;&#x34;&#x34;&#46;&#50;">&#x77;&#x65;&#98;&#112;&#x61;&#x63;&#x6b;&#x40;&#x34;&#46;&#x34;&#x34;&#46;&#50;</a>，webpack-cli@4.4.0。webpack-dev-server 为：<a href="mailto:&#119;&#x65;&#x62;&#112;&#x61;&#x63;&#107;&#x2d;&#x64;&#101;&#118;&#x2d;&#115;&#x65;&#x72;&#118;&#x65;&#114;&#x40;&#51;&#46;&#49;&#49;&#x2e;&#x32;">&#119;&#x65;&#x62;&#112;&#x61;&#x63;&#107;&#x2d;&#x64;&#101;&#118;&#x2d;&#115;&#x65;&#x72;&#118;&#x65;&#114;&#x40;&#51;&#46;&#49;&#49;&#x2e;&#x32;</a></p>
+<p>1，我本地 webpack webpack-cli 分别为：<a href="mailto:&#x77;&#x65;&#x62;&#x70;&#97;&#99;&#x6b;&#x40;&#52;&#x2e;&#x34;&#52;&#46;&#x32;">&#x77;&#x65;&#x62;&#x70;&#97;&#99;&#x6b;&#x40;&#52;&#x2e;&#x34;&#52;&#46;&#x32;</a>，webpack-cli@4.4.0。webpack-dev-server 为：<a href="mailto:&#119;&#101;&#98;&#112;&#x61;&#99;&#x6b;&#x2d;&#x64;&#x65;&#118;&#x2d;&#115;&#101;&#x72;&#118;&#x65;&#x72;&#64;&#x33;&#x2e;&#x31;&#49;&#x2e;&#x32;">&#119;&#101;&#98;&#112;&#x61;&#99;&#x6b;&#x2d;&#x64;&#x65;&#118;&#x2d;&#115;&#101;&#x72;&#118;&#x65;&#x72;&#64;&#x33;&#x2e;&#x31;&#49;&#x2e;&#x32;</a></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i webpack@<span class="number">4.44</span><span class="number">.2</span> webpack-cli@<span class="number">4.4</span><span class="number">.0</span> webpack-dev-server@<span class="number">3.11</span><span class="number">.2</span> -D</span><br></pre></td></tr></table></figure>
 <h3 id="配置-webpack-config-js-文件"><a href="#配置-webpack-config-js-文件" class="headerlink" title="配置 webpack.config.js 文件"></a>配置 webpack.config.js 文件</h3><blockquote>
 <p>在项目根目录中创建 webpack.config.js 文件。</p>
@@ -3145,14 +3143,14 @@
         <category>dva</category>
       </categories>
       <tags>
-        <tag>dva</tag>
         <tag>webpack</tag>
+        <tag>dva</tag>
         <tag>ts</tag>
         <tag>eslint</tag>
       </tags>
   </entry>
   <entry>
-    <title>文件上传</title>
+    <title>UploadFile</title>
     <url>/2020/06/13/uploadFile/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>本文主要概括了以下几种文件上传方式：</p>
 <ul>
@@ -3189,8 +3187,8 @@
         <category>文件上传</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>canvas</tag>
+        <tag>JavaScript</tag>
         <tag>File</tag>
       </tags>
   </entry>
@@ -3503,7 +3501,7 @@
 <p>3，最后将生成的 ssh 公钥设置到 github 中，或者将全局的 ssh 公钥中处于公钥最后位置的邮箱地址修改为刚刚设置的局部邮箱地址也能达到相同的目的。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCfmlAt2plCVbeObPxuWawsQovYcoanwwRZKVnA5O&#x2F;oMnGsyzjUWl+4dLOnSHmOo6dtEa9TDTZO7eWXtkVjMSLHyGTm5QvzrX31r&#x2F;kbkhC0E23ZUqB4uA8Re0fPnDWC8O1sFVvD1QGd1qjs+hQS&#x2F;sM0b+prwE0vWueM0zhuKpffjqSsbac9+6TkaCvGcaVvFIMNUWhGkhNWA4OjjhXTJEuDCwH+hT0orxzO&#x2F;mW9Si3aHJtXi0xptiX3zzTNFFO9gYmnH80KGgwwlMrbRC+SPlFBzGQybniN9quhzs7VYwOffY3jcCM81NRrdR+K9sJF+A6&#x2F;F2xV3VP+WAIjh1TQtVck2FF3k&#x2F;BdqMuVI4yo2JBHrhUG7apSwTN7vwasou3CGL4wygQatt+tdsGSDGyuQvVkImqPgBvS54fWzGb36pq4vI9Ix&#x2F;eLbVaunOwy+NnZGm1NU0oj1w203GS6OfO7yguxuoheeGoESn&#x2F;tiTmgcjkHbxNnl6oeCok&#x3D; xxx@xx.com</span><br></pre></td></tr></table></figure>
 <ul>
-<li>即将上述 ssh 公钥中的邮箱：<strong><a href="mailto:&#x78;&#120;&#x78;&#64;&#x78;&#120;&#46;&#x63;&#111;&#109;">&#x78;&#120;&#x78;&#64;&#x78;&#120;&#46;&#x63;&#111;&#109;</a></strong> 换成刚刚设置邮箱地址即可设置到 github 中生效。</li>
+<li>即将上述 ssh 公钥中的邮箱：<strong><a href="mailto:&#x78;&#x78;&#x78;&#64;&#x78;&#120;&#x2e;&#x63;&#x6f;&#x6d;">&#x78;&#x78;&#x78;&#64;&#x78;&#120;&#x2e;&#x63;&#x6f;&#x6d;</a></strong> 换成刚刚设置邮箱地址即可设置到 github 中生效。</li>
 </ul>
 <h4 id="git-合并分支"><a href="#git-合并分支" class="headerlink" title="git 合并分支"></a>git 合并分支</h4><p>1、git rebase -i HEAD~「需要合并的数量」进行合并：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方式一：指定合并条数</span></span><br><span class="line">git rebase -i HEAD~<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二：选中最近的</span></span><br><span class="line">git rebase -i HEAD^^</span><br></pre></td></tr></table></figure>
