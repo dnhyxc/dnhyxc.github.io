@@ -17,7 +17,7 @@
 <meta property="og:description" content="检测当前页面是否被隐藏1、使用 visibilitychange 事件可监测当前页面是否被隐藏，当切换页面时document.hidden显示为 true 则为隐藏, false 就是显示状态。 2、一般在工作用主要用到用户在页面停留了多长时间。如：爱奇艺广告播放时间居然是在当前标签页激活的时候才会进行倒计时，离开当前标签页的时候，倒计时停止。 2、基本使用方式如下： 123document.ad">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-20T03:02:09.000Z">
-<meta property="article:modified_time" content="2022-01-31T06:46:03.336Z">
+<meta property="article:modified_time" content="2022-02-01T12:09:50.570Z">
 <meta property="article:author" content="dnhyxc">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
@@ -405,7 +405,7 @@
 <p>2、由于分隔符在顺序上是从后往前添加的：比如 1234567 添加后是 1,234,567 而不是 123,456,7，所以方便起见可以先把数组倒序排列，添加完之后再将顺序倒回来，就是正常顺序了。</p>
 <p>3、<strong>注意</strong>：如果数字带小数的话，要把小数部分分开处理。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numFormat</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 分隔小数点</span></span><br><span class="line">  num = num.toString().split(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">  <span class="comment">// 转换成字符数组并且倒序排列</span></span><br><span class="line">  <span class="keyword">var</span> arr = num[<span class="number">0</span>].split(<span class="string">&quot;&quot;</span>).reverse();</span><br><span class="line">  <span class="keyword">var</span> res = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i % <span class="number">3</span> === <span class="number">0</span> &amp;&amp; i !== <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 添加分隔符</span></span><br><span class="line">      res.push(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    res.push(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 再次倒序成为正确的顺序</span></span><br><span class="line">  res.reverse();</span><br><span class="line">  <span class="comment">// 如果有小数的话添加小数部分</span></span><br><span class="line">  <span class="keyword">if</span> (num[<span class="number">1</span>]) &#123;</span><br><span class="line">    res = res.join(<span class="string">&quot;&quot;</span>).concat(<span class="string">&quot;.&quot;</span> + num[<span class="number">1</span>]);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res = res.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1234567894532</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">673439.4542</span>;</span><br><span class="line"><span class="built_in">console</span>.log(numFormat(a)); <span class="comment">// &quot;1,234,567,894,532&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(numFormat(b)); <span class="comment">// &quot;673,439.4542&quot;</span></span><br></pre></td></tr></table></figure>
-<h5 id="实现方式二"><a href="#实现方式二" class="headerlink" title="实现方式二"></a>实现方式二</h5><p>1、使用 JS 自带的 API **toLocaleString()**，该方法返回这个数字在特定语言环境下的表示字符串。</p>
+<h5 id="实现方式二"><a href="#实现方式二" class="headerlink" title="实现方式二"></a>实现方式二</h5><p>1、使用 JS 自带的 API <code>toLocaleString()</code>，该方法返回这个数字在特定语言环境下的表示字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numObj.toLocaleString(locales, options);</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>locales：缩写语言代码（BCP 47 language tag，例如：cmn-Hans-CN）的字符串或者这些字符串组成的数组。<br>options：包含一些或所有的下面属性的类。decimal =&gt; 用于纯数字格式，currency =&gt; 用于货币格式，percent =&gt; 用于百分比格式，unit =&gt; 用于单位格式。</p>
@@ -479,7 +479,7 @@
     2021-07-20
   <br>
   <strong class="update-time">最后更新：</strong>
-  2022-01-31
+  2022-02-01
   <br>
   <strong class="article-titles">本文标题：</strong>
   <a href="https://dnhyxc.gitee.io/2021/07/20/jsTools/" title="JsTools" target="_blank">JsTools</a>
@@ -826,51 +826,7 @@
             <ul class="article-tag-list" id="tags-list" q-show="showTags">
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">class</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">super</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">dva</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ts</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">eslint</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -886,27 +842,27 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">dva</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ts</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">eslint</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H5</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">qiankun</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">File</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -926,11 +882,51 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+                <a href="javascript:void(0)" class="js-tag color1">class</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">super</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">qiankun</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TypeScript</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">H5</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">File</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -939,6 +935,10 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
               
               <div class="clearfix"></div>
