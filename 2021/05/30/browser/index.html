@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://dnhyxc.gitee.io/2021/05/30/browser/target.png">
 <meta property="og:image" content="https://dnhyxc.gitee.io/2021/05/30/browser/target2.png">
 <meta property="article:published_time" content="2021-05-30T08:16:01.000Z">
-<meta property="article:modified_time" content="2021-12-09T15:43:57.149Z">
+<meta property="article:modified_time" content="2022-02-28T15:56:04.095Z">
 <meta property="article:author" content="dnhyxc">
 <meta property="article:tag" content="browser">
 <meta name="twitter:card" content="summary">
@@ -603,23 +603,35 @@
 <p><img src="/2021/05/30/browser/hcz.png" alt="合成帧"></p>
 <p>9，合成的好处在于这个过程没有涉及到主线程，所以合成线程不需要等待样式的计算以及 JavaScript 完成执行。这就是为什么合成器相关的动画最流畅，如果某个动画涉及到布局或者绘制的调整，就会涉及到主线程的重新计算，自然会慢很多。</p>
 <blockquote>
-<p>什么是光栅化：光栅化是将一个图元转变为一个二维图像的过程（就是将几何数据经过一系列变换后最终转换为像素，从而呈现在显示设备上的过程）。二维图像上每个点都包含了颜色、深度和纹理数据。将该点和相关信息叫做一个片元（fragment）。光栅化的目的，是找出一个几何单元（比如三角形）所覆盖的像素。</p>
 <ul>
-<li>粗略地讲：模型的那些顶点在经过各种矩阵变换后也仅仅是顶点。而由顶点构成的三角形要在屏幕上显示出来，除了需要三个顶点的信息以外，还需要确定构成这个三角形的所有像素的信息。光栅化就是干这个的：<br><img src="/2021/05/30/browser/gsh.png" alt="光栅化"></li>
-<li>光栅化会根据三角形顶点的位置，来确定需要多少个像素点才能构成这个三角形，以及每个像素点都应该得到哪些信息，比如 uv 坐标该是什么等。这是通过对顶点数据进行插值来完成的。</li>
-<li>光栅化是将几何数据经过一系列变换后最终转换为像素，从而呈现在显示设备上的过程，如下图：<br><img src="/2021/05/30/browser/gsh2.png" alt="光栅化"></li>
-<li>光栅化的本质是坐标变换、几何离散化。</li>
-<li>总结：光栅化，就是将几何信息转换成一个个栅格组成的图像的过程。</li>
-</ul>
-<p>光栅化主要有以下几步：</p>
-<ul>
-<li>读取模型的顶点，3 个 3 个的读，因为要画三角形。</li>
-<li>将 3 个顶点两两连成线，形成三角形。</li>
-<li>计算屏幕像素点在三角形内还是三角形外。在三角形内部的，就上色（颜色是通过一系列计算得出来的），在三角形外部的，就不上色。<ul>
-<li>注意：如果一个三角形挡在另一个三角形前面，我们应该只画前面的三角形。所以这里还需要比较一下正准备上色的这个像素点是不是已经上过色了。如果这个像素点已经上过色了，并且它是被 Z=1 的顶点上的色，而我们正准备上色的这个顶点的 Z=2（说明这个顶点被挡在了后面），那么这个顶点就不应该上色，因为它是被挡住的点。</li>
-</ul>
+<li><p>什么是光栅化：光栅化是将一个图元转变为一个二维图像的过程（就是将几何数据经过一系列变换后最终转换为像素，从而呈现在显示设备上的过程）。二维图像上每个点都包含了颜色、深度和纹理数据。将该点和相关信息叫做一个片元（fragment）。光栅化的目的，是找出一个几何单元（比如三角形）所覆盖的像素。</p>
 </li>
-<li>不断的循环，直到画完 3D 模型的所有三角形，这样一个模型就出来了。</li>
+<li><p>粗略地讲：模型的那些顶点在经过各种矩阵变换后也仅仅是顶点。而由顶点构成的三角形要在屏幕上显示出来，除了需要三个顶点的信息以外，还需要确定构成这个三角形的所有像素的信息。光栅化就是干这个的：</p>
+</li>
+</ul>
+<p><img src="/2021/05/30/browser/gsh.png" alt="光栅化"></p>
+<ul>
+<li>光栅化会根据三角形顶点的位置，来确定需要多少个像素点才能构成这个三角形，以及每个像素点都应该得到哪些信息，比如 uv 坐标该是什么等。这是通过对顶点数据进行插值来完成的。</li>
+<li>光栅化是将几何数据经过一系列变换后最终转换为像素，从而呈现在显示设备上的过程，如下图：</li>
+</ul>
+<p><img src="/2021/05/30/browser/gsh2.png" alt="光栅化"></p>
+<ul>
+<li><p>光栅化的本质是坐标变换、几何离散化。</p>
+</li>
+<li><p>总结：光栅化，就是将几何信息转换成一个个栅格组成的图像的过程。</p>
+</li>
+<li><p>光栅化主要有以下几步：</p>
+</li>
+<li><p>读取模型的顶点，3 个 3 个的读，因为要画三角形。</p>
+</li>
+<li><p>将 3 个顶点两两连成线，形成三角形。</p>
+</li>
+<li><p>计算屏幕像素点在三角形内还是三角形外。在三角形内部的，就上色（颜色是通过一系列计算得出来的），在三角形外部的，就不上色。</p>
+</li>
+<li><p>注意：如果一个三角形挡在另一个三角形前面，我们应该只画前面的三角形。所以这里还需要比较一下正准备上色的这个像素点是不是已经上过色了。如果这个像素点已经上过色了，并且它是被 Z=1 的顶点上的色，而我们正准备上色的这个顶点的 Z=2（说明这个顶点被挡在了后面），那么这个顶点就不应该上色，因为它是被挡住的点。</p>
+</li>
+<li><p>不断的循环，直到画完 3D 模型的所有三角形，这样一个模型就出来了。</p>
+</li>
 </ul>
 </blockquote>
 <h3 id="浏览器对事件的处理"><a href="#浏览器对事件的处理" class="headerlink" title="浏览器对事件的处理"></a>浏览器对事件的处理</h3><h4 id="浏览器对事件的处理说明"><a href="#浏览器对事件的处理说明" class="headerlink" title="浏览器对事件的处理说明"></a>浏览器对事件的处理说明</h4><p>1，当页面渲染完毕以后，TAB 内已经显示出了可交互的 WEB 页面，用户可以进行移动鼠标、点击页面等操作了，而当这些事件发生时候，浏览器是如何处理这些事件的呢？</p>
@@ -674,7 +686,7 @@
     2021-05-30
   <br>
   <strong class="update-time">最后更新：</strong>
-  2021-12-09
+  2022-02-28
   <br>
   <strong class="article-titles">本文标题：</strong>
   <a href="https://dnhyxc.gitee.io/2021/05/30/browser/" title="Browser" target="_blank">Browser</a>
@@ -1025,6 +1037,14 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MSE</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MediaSource</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">class</a>
               </li>
               
@@ -1038,14 +1058,6 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MSE</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MediaSource</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1065,6 +1077,14 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">FileReader</a>
               </li>
               
@@ -1081,19 +1101,7 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1113,19 +1121,23 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">File</a>
               </li>
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
               
               <li class="article-tag-list-item">
