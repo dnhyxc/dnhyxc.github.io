@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://dnhyxc.gitee.io/2022/05/02/wps/redHeadTemplate.png">
 <meta property="og:image" content="https://dnhyxc.gitee.io/2022/05/02/wps/redHeadContent.png">
 <meta property="article:published_time" content="2022-05-02T13:06:16.000Z">
-<meta property="article:modified_time" content="2022-05-03T18:00:14.255Z">
+<meta property="article:modified_time" content="2022-05-06T14:55:09.088Z">
 <meta property="article:author" content="dnhyxc">
 <meta property="article:tag" content="WPS">
 <meta name="twitter:card" content="summary">
@@ -81,7 +81,7 @@
           加载项都对应打开了一个网页，并通过调用网页中 JavaScript
           方法来完成其功能逻辑。
         </p>
-        <a class="btn_link" href="/2022/03/30/wps/">WPS OA 二次开发</a>
+        <a class="btn_link" href="/2022/05/02/wps/">WPS OA 二次开发</a>
       </div>
     </div>
     <div class="card">
@@ -425,7 +425,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text"> 文章字数: </span>
-      <span class="post-count">4.4k字</span>
+      <span class="post-count">4.6k字</span>
     </span>
   </span>
   <span class="post-time">
@@ -433,7 +433,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text"> 阅读时长: </span>
-      <span class="post-count">18分</span>
+      <span class="post-count">19分</span>
     </span>
   </span>
 </div>
@@ -508,6 +508,18 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fieldObj = &#123;</span><br><span class="line">  copySend: <span class="string">&quot;区公司各部门，各市公司，FF融安公司，FF人力资源部&quot;</span>,</span><br><span class="line">  creatPerson: <span class="string">&quot;李芙蓉&quot;</span>,</span><br><span class="line">  enclosure: [</span><br><span class="line">    &#123;</span><br><span class="line">      downloadUrl: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">      key: <span class="string">&quot;0dsad1&quot;</span>,</span><br><span class="line">      mimeType: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">      name: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">      size: <span class="number">29191</span>,</span><br><span class="line">      url: <span class="string">&quot;xxxurl&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  fileDepartment: <span class="string">&#x27;&#123;&quot;id&quot;:530051,&quot;name&quot;:&quot;区公司/人力资源部&quot;&#125;&#x27;</span>,</span><br><span class="line">  issUer: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">  issueDate: <span class="string">&quot;2022/04/14&quot;</span>,</span><br><span class="line">  mainSend: <span class="string">&quot;区公司各部门，FF融安公司，各市公司，FF人力资源部&quot;</span>,</span><br><span class="line">  outsideRefNo: <span class="string">&quot;测试机关代字20226817号&quot;</span>,</span><br><span class="line">  printDate: <span class="string">&quot;签发日期&quot;</span>,</span><br><span class="line">  refNo: <span class="string">&quot;测试机关代字20226817号&quot;</span>,</span><br><span class="line">  secretClass: <span class="string">&quot;普通商密&quot;</span>,</span><br><span class="line">  signatureUnit: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">  signingUnit: <span class="string">&quot;署名区公司人力资源部&quot;</span>,</span><br><span class="line">  title: <span class="string">&quot;取个名字真的难&quot;</span>,</span><br><span class="line">  urgencyLevel: <span class="string">&quot;特急&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="设置-WPS-页边距"><a href="#设置-WPS-页边距" class="headerlink" title="设置 WPS 页边距"></a>设置 WPS 页边距</h4><p>设置页边距需要通过如下方式进行设置：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wpsApp = wps.WpsApplication();</span><br><span class="line"><span class="keyword">const</span> selection = wpsApp.ActiveWindow.Selection;</span><br><span class="line">selection.Range.PageSetup.LeftMargin = <span class="number">71.999428</span>; <span class="comment">// 设置左边距为 2.54</span></span><br><span class="line">selection.Range.PageSetup.RightMargin = <span class="number">71.999428</span>; <span class="comment">// 设置左边距为 2.54</span></span><br></pre></td></tr></table></figure>
+<p>设置页边距具体用法：</p>
+<ul>
+<li>唤起 WPS 新建文档时设置左右页边距：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">NewFile</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> wpsApp = wps.WpsApplication();</span><br><span class="line">  wps.PluginStorage.setItem(constStrEnum.IsInCurrOADocOpen, <span class="literal">true</span>); <span class="comment">// 设置OA打开文档的临时状态</span></span><br><span class="line">  <span class="keyword">let</span> doc;</span><br><span class="line">  <span class="keyword">if</span> (params.isOfficialDocument) &#123;</span><br><span class="line">    wps.Application.GetApplicationEx().NewOfficialDocument(); <span class="comment">// 新增使用公文写作打开的公文</span></span><br><span class="line">    doc = wpsApp.ActiveDocument;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    doc = wpsApp.Documents.Add(); <span class="comment">// 新增OA端文档</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 新建时更改页边距</span></span><br><span class="line">  <span class="keyword">const</span> selection = wpsApp.ActiveWindow.Selection;</span><br><span class="line">  selection.Range.PageSetup.LeftMargin = <span class="number">71.999428</span>; <span class="comment">// 设置左边距为 2.54</span></span><br><span class="line">  selection.Range.PageSetup.RightMargin = <span class="number">71.999428</span>; <span class="comment">// 设置左边距为 2.54</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 以下代码省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>唤起 WPS 编辑文档时设置左右页边距：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">OpenFile</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 以上代码省略...</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 更新正文时更改页边距</span></span><br><span class="line">  <span class="keyword">const</span> wpsApp = wps.WpsApplication();</span><br><span class="line">  <span class="keyword">const</span> selection = wpsApp.ActiveWindow.Selection;</span><br><span class="line">  selection.Range.PageSetup.LeftMargin = <span class="number">71.999428</span>; <span class="comment">// 设置左边距为 2.54</span></span><br><span class="line">  selection.Range.PageSetup.RightMargin = <span class="number">71.999428</span>; <span class="comment">// 设置左边距为 2.54</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 以下代码省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：设置页边距时必须确保此时 <strong>doc</strong> 对象已经存在。</p>
+</blockquote>
 <h4 id="进入-WPS-编辑自动开启修订"><a href="#进入-WPS-编辑自动开启修订" class="headerlink" title="进入 WPS 编辑自动开启修订"></a>进入 WPS 编辑自动开启修订</h4><p>只需在 <strong>_WpsInvoke()</strong> 方法下的 <strong>OpenDoc</strong> 属性中传入如下参数即可：</p>
 <ul>
 <li>_WpsInvoke 和 OpenDoc 是 WPS 源码暴露出来的方法，开发者无需关心。</li>
@@ -637,7 +649,7 @@
     2022-05-02
   <br>
   <strong class="update-time">最后更新：</strong>
-  2022-05-04
+  2022-05-06
   <br>
   <strong class="article-titles">本文标题：</strong>
   <a href="https://dnhyxc.gitee.io/2022/05/02/wps/" title="WPS OA 助手开发" target="_blank">WPS OA 助手开发</a>
@@ -995,11 +1007,23 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MSE</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MediaSource</a>
               </li>
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1019,7 +1043,15 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">dva</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ts</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">eslint</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1039,23 +1071,7 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">dva</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ts</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">eslint</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MSE</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MediaSource</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1064,10 +1080,6 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1083,11 +1095,15 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WPS</a>
+                <a href="javascript:void(0)" class="js-tag color5">File</a>
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">File</a>
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WPS</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1096,10 +1112,6 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
               
               <div class="clearfix"></div>
