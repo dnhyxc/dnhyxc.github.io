@@ -9,15 +9,15 @@
   <link rel="dns-prefetch" href="https://dnhyxc.gitee.io">
   <title>前端算法 | dnhyxc</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta name="description" content="模拟 Object.create()1，Object.create()方法说明：Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。 123456&#x2F;&#x2F; 模拟 Object.create()function create(proto) &amp;#123;  function F() &amp;#123;&amp;#125;  F.prototype &#x3D; proto;">
+  <meta name="description" content="判断两个数组是否相等前提：数组可能出现嵌套，每层数组的元素都是简单数据类型。 判断相等条件：数组元素顺序和每层元素的值是否都是相同的，如：  a1 &#x3D; [1]、a2 &#x3D; [&#39;1&#39;] 此时 a1 !&#x3D;&#x3D; a2。  a1 &#x3D; [1, 2]、a2 &#x3D; [1, [2]] 此时 a1 !&#x3D;&#x3D; a2。  a1 &#x3D; [1, 2, 3]、a2 &#x3D; [1, 2, 3] 此时 a1 &#x3D;&#x3D;&#x3D; a2。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端算法">
 <meta property="og:url" content="https://dnhyxc.gitee.io/2022/04/12/algorithm/index.html">
 <meta property="og:site_name" content="dnhyxc">
-<meta property="og:description" content="模拟 Object.create()1，Object.create()方法说明：Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。 123456&#x2F;&#x2F; 模拟 Object.create()function create(proto) &amp;#123;  function F() &amp;#123;&amp;#125;  F.prototype &#x3D; proto;">
+<meta property="og:description" content="判断两个数组是否相等前提：数组可能出现嵌套，每层数组的元素都是简单数据类型。 判断相等条件：数组元素顺序和每层元素的值是否都是相同的，如：  a1 &#x3D; [1]、a2 &#x3D; [&#39;1&#39;] 此时 a1 !&#x3D;&#x3D; a2。  a1 &#x3D; [1, 2]、a2 &#x3D; [1, [2]] 此时 a1 !&#x3D;&#x3D; a2。  a1 &#x3D; [1, 2, 3]、a2 &#x3D; [1, 2, 3] 此时 a1 &#x3D;&#x3D;&#x3D; a2。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-12T11:05:57.000Z">
-<meta property="article:modified_time" content="2022-05-03T18:00:09.216Z">
+<meta property="article:modified_time" content="2022-05-24T14:40:48.314Z">
 <meta property="article:author" content="dnhyxc">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -449,7 +449,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text"> 文章字数: </span>
-      <span class="post-count">1k字</span>
+      <span class="post-count">387字</span>
     </span>
   </span>
   <span class="post-time">
@@ -457,7 +457,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text"> 阅读时长: </span>
-      <span class="post-count">5分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -479,15 +479,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      <h4 id="模拟-Object-create"><a href="#模拟-Object-create" class="headerlink" title="模拟 Object.create()"></a>模拟 Object.create()</h4><p>1，Object.create()方法说明：Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟 Object.create()</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">proto</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  F.prototype = proto;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <h4 id="判断两个数组是否相等"><a href="#判断两个数组是否相等" class="headerlink" title="判断两个数组是否相等"></a>判断两个数组是否相等</h4><p>前提：数组可能出现嵌套，每层数组的元素都是简单数据类型。</p>
+<p>判断相等条件：数组元素顺序和每层元素的值是否都是相同的，如：</p>
+<ul>
+<li><p><code>a1 = [1]</code>、<code>a2 = [&#39;1&#39;]</code> 此时 a1 !== a2。</p>
+</li>
+<li><p><code>a1 = [1, 2]</code>、<code>a2 = [1, [2]]</code> 此时 a1 !== a2。</p>
+</li>
+<li><p><code>a1 = [1, 2, 3]</code>、<code>a2 = [1, 2, 3]</code> 此时 a1 === a2。</p>
+</li>
+<li><p><code>a1 = [&#39;a&#39;, [&#39;b&#39;, [&#39;c&#39;], &#39;d&#39;]</code>、<code>a2 = [&#39;a&#39;, [&#39;b&#39;, [&#39;c&#39;], &#39;d&#39;]</code> 此时 a1 === a2。</p>
+</li>
+</ul>
+<p>具体实现方式如下：</p>
 <a id="more"></a>
 
-<h4 id="实现-Event-event-bus"><a href="#实现-Event-event-bus" class="headerlink" title="实现 Event(event bus)"></a>实现 Event(event bus)</h4><p>1，event bus 既是 node 中各个模块的基石，又是前端组件通信的依赖手段之一，同时涉及了订阅-发布设计模式，是非常重要的基础。</p>
-<p>2，简单版实现：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单版</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventEmeitter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>._events = <span class="built_in">this</span>._events || <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">// 储存事件/回调键值对</span></span><br><span class="line">    <span class="built_in">this</span>._maxListeners = <span class="built_in">this</span>._maxListeners || <span class="number">10</span>; <span class="comment">// 设立监听上限</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听名为type的事件</span></span><br><span class="line">EventEmeitter.prototype.on = <span class="function"><span class="keyword">function</span> (<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将type事件以及对应的fn函数放入this._events中储存</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">this</span>._events.get(type)) &#123;</span><br><span class="line">    <span class="built_in">this</span>._events.set(type, fn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 触发名为type的事件</span></span><br><span class="line">EventEmeitter.prototype.emit = <span class="function"><span class="keyword">function</span> (<span class="params">type, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> handler;</span><br><span class="line">  <span class="comment">// 从储存事件键值对的this._events中获取对应事件回调函数</span></span><br><span class="line">  handler = <span class="built_in">this</span>._events.get(type);</span><br><span class="line">  <span class="keyword">if</span> (args.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    handler.apply(<span class="built_in">this</span>, args);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    handler.call(<span class="built_in">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试用例</span></span><br><span class="line"><span class="keyword">let</span> eventBus = <span class="keyword">new</span> EventEmeitter();</span><br><span class="line"><span class="comment">// 注意：必须先调用addListener，再调用emit触发addListener，否则会报错</span></span><br><span class="line">eventBus.on(<span class="string">&quot;event1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(params);</span><br><span class="line">&#125;);</span><br><span class="line">eventBus.emit(<span class="string">&quot;event1&quot;</span>, &#123;</span><br><span class="line">  name: <span class="string">&quot;dnhyxc&quot;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>3，深度版实现：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEventBus</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>._events = <span class="built_in">this</span>._events || <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">// 储存事件/回调键值对</span></span><br><span class="line">    <span class="built_in">this</span>._maxListeners = <span class="built_in">this</span>._maxListeners || <span class="number">10</span>; <span class="comment">// 设立监听上限</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听名为type的事件</span></span><br><span class="line">MyEventBus.prototype.on = <span class="function"><span class="keyword">function</span> (<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 获取对应事件名称的函数清单</span></span><br><span class="line">  <span class="keyword">const</span> handler = <span class="built_in">this</span>._events.get(type);</span><br><span class="line">  <span class="keyword">if</span> (!handler) &#123;</span><br><span class="line">    <span class="comment">// 第一次监听type事件时，handler为undefined，说明_events中还没有监听者，需要设置type事件的监听者</span></span><br><span class="line">    <span class="built_in">this</span>._events.set(type, fn);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (handler &amp;&amp; <span class="keyword">typeof</span> handler === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果handler是函数说明已经有一个监听者了，此时我们需要用数组储存这两个监听者</span></span><br><span class="line">    <span class="built_in">this</span>._events.set(type, [handler, fn]);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 进入到这，说明已经有多个监听者了，那么直接往数组里push函数即可</span></span><br><span class="line">    handler.push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 触发名为type的事件</span></span><br><span class="line">MyEventBus.prototype.emit = <span class="function"><span class="keyword">function</span> (<span class="params">type, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> handler;</span><br><span class="line">  handler = <span class="built_in">this</span>._events.get(type);</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(handler)) &#123;</span><br><span class="line">    <span class="comment">// 如果是一个数组说明有多个监听者，需要依次此触发里面的函数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; handler.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (args.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        handler[i].apply(<span class="built_in">this</span>, args);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        handler[i].call(<span class="built_in">this</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 单个函数的情况我们直接触发即可</span></span><br><span class="line">    <span class="keyword">if</span> (args.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      handler.apply(<span class="built_in">this</span>, args);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      handler.call(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">MyEventBus.prototype.removeListener = <span class="function"><span class="keyword">function</span> (<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 获取对应事件名称的函数清单</span></span><br><span class="line">  <span class="keyword">const</span> handler = <span class="built_in">this</span>._events.get(type);</span><br><span class="line">  <span class="comment">// 如果是函数,说明只被监听了一次</span></span><br><span class="line">  <span class="keyword">if</span> (handler &amp;&amp; <span class="keyword">typeof</span> handler === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>._events.delete(type, fn);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> postion;</span><br><span class="line">    <span class="comment">// 如果handler是数组，说明被监听多次要找到对应的函数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; handler.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (handler[i] === fn) &#123;</span><br><span class="line">        postion = i;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        postion = -<span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果找到匹配的函数，从数组中清除</span></span><br><span class="line">    <span class="keyword">if</span> (postion !== -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="comment">// 找到数组对应的位置，直接清除此回调</span></span><br><span class="line">      handler.splice(postion, <span class="number">1</span>);</span><br><span class="line">      <span class="comment">// 如果清除后只有一个函数，那么取消数组，以函数形式保存</span></span><br><span class="line">      <span class="keyword">if</span> (handler.length === <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>._events.set(type, handler[<span class="number">0</span>]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试用例</span></span><br><span class="line"><span class="keyword">let</span> deepEventBus = <span class="keyword">new</span> MyEventBus();</span><br><span class="line"><span class="comment">// 注意：必须先调用addListener，再调用emit触发addListener，否则会报错</span></span><br><span class="line">deepEventBus.on(<span class="string">&quot;event1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(params, <span class="string">&quot;dnhyxc1&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">deepEventBus.on(<span class="string">&quot;event1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(params, <span class="string">&quot;dnhyxc2&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">deepEventBus.on(<span class="string">&quot;event1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(params, <span class="string">&quot;dnhyxc3&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">deepEventBus.emit(<span class="string">&quot;event1&quot;</span>, &#123;</span><br><span class="line">  name: <span class="string">&quot;dnhyxc&quot;</span>,</span><br><span class="line">  age: <span class="string">&quot;18&quot;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.equals = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!arr) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.length !== arr.length) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(<span class="built_in">this</span>[i]) &amp;&amp; <span class="built_in">Array</span>.isArray(arr[i])) &#123;</span><br><span class="line">      <span class="comment">// 如果递归时 i 中其中有一项返回 false，即直接返回 false</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="built_in">this</span>[i].equals(arr[i])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>[i] !== arr[i]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="string">&quot;a&quot;</span>, [<span class="string">&quot;b&quot;</span>, [<span class="string">&quot;c&quot;</span>], <span class="string">&quot;d&quot;</span>]];</span><br><span class="line"><span class="keyword">const</span> a2 = [<span class="string">&quot;a&quot;</span>, [<span class="string">&quot;b&quot;</span>, [<span class="string">&quot;c&quot;</span>], <span class="string">&quot;d&quot;</span>]];</span><br><span class="line"><span class="keyword">const</span> a3 = [<span class="number">1</span>, <span class="string">&quot;2&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> a4 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a1.equals(a2)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a3.equals(a4)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <h4 id="计算对象的最大层数"><a href="#计算对象的最大层数" class="headerlink" title="计算对象的最大层数"></a>计算对象的最大层数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  a: <span class="string">&quot;a&quot;</span>,</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: &#123;</span><br><span class="line">      d: <span class="string">&quot;d&quot;</span>,</span><br><span class="line">      e: <span class="string">&quot;e&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  f: &#123;</span><br><span class="line">    g: &#123;</span><br><span class="line">      h: &#123;</span><br><span class="line">        i: <span class="string">&quot;i&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLevel</span>(<span class="params">obj = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="function">(<span class="params">param, level = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> param === <span class="string">&quot;object&quot;</span> &amp;&amp; param !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="built_in">Object</span>.values(param).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> item === <span class="string">&quot;object&quot;</span> &amp;&amp; item !== <span class="literal">null</span>) &#123;</span><br><span class="line">          fn(item, level + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> (result = level + <span class="number">1</span> &gt; result ? level + <span class="number">1</span> : result);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result = level &gt; result ? level : result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  fn(obj);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
@@ -508,7 +515,7 @@
     2022-04-12
   <br>
   <strong class="update-time">最后更新：</strong>
-  2022-05-04
+  2022-05-24
   <br>
   <strong class="article-titles">本文标题：</strong>
   <a href="https://dnhyxc.gitee.io/2022/04/12/algorithm/" title="前端算法" target="_blank">前端算法</a>
@@ -567,7 +574,7 @@
     <div class="article-toc">
       <div class="toc-header">目录</div>
       <div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-Object-create"><span class="toc-number">1.</span> <span class="toc-text">模拟 Object.create()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Event-event-bus"><span class="toc-number">2.</span> <span class="toc-text">实现 Event(event bus)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B1%82%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">计算对象的最大层数</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89"><span class="toc-number">1.</span> <span class="toc-text">判断两个数组是否相等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B1%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">计算对象的最大层数</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -650,7 +657,7 @@
       <div class="tooltip tooltip-east">
         <div class="tooltip-content tooltip-toc" style="background-image: linear-gradient(to top, #23262e 0%, #23262e 100%);">
           <div class="toc-article">
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-Object-create"><span class="toc-number">1.</span> <span class="toc-text">模拟 Object.create()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Event-event-bus"><span class="toc-number">2.</span> <span class="toc-text">实现 Event(event bus)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B1%82%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">计算对象的最大层数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89"><span class="toc-number">1.</span> <span class="toc-text">判断两个数组是否相等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B1%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">计算对象的最大层数</span></a></li></ol>
           </div>
         </span>
       </div>
@@ -863,6 +870,10 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
               
@@ -876,14 +887,6 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -903,14 +906,6 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">dva</a>
               </li>
               
@@ -923,7 +918,7 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H5</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -943,7 +938,7 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+                <a href="javascript:void(0)" class="js-tag color3">H5</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -955,15 +950,19 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">File</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Vue2</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -972,6 +971,14 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WPS</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Vue2</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
               </li>
               
               <div class="clearfix"></div>
