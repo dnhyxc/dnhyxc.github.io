@@ -17,7 +17,7 @@
 <meta property="og:description" content="判断两个数组是否相等前提：数组可能出现嵌套，每层数组的元素都是简单数据类型。 判断相等条件：数组元素顺序和每层元素的值是否都是相同的，如：  a1 &#x3D; [1]、a2 &#x3D; [&#39;1&#39;] 此时 a1 !&#x3D;&#x3D; a2。  a1 &#x3D; [1, 2]、a2 &#x3D; [1, [2]] 此时 a1 !&#x3D;&#x3D; a2。  a1 &#x3D; [1, 2, 3]、a2 &#x3D; [1, 2, 3] 此时 a1 &#x3D;&#x3D;&#x3D; a2。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-12T11:05:57.000Z">
-<meta property="article:modified_time" content="2022-05-24T14:40:48.314Z">
+<meta property="article:modified_time" content="2022-05-24T14:44:18.408Z">
 <meta property="article:author" content="dnhyxc">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -449,7 +449,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text"> 文章字数: </span>
-      <span class="post-count">387字</span>
+      <span class="post-count">412字</span>
     </span>
   </span>
   <span class="post-time">
@@ -494,7 +494,7 @@
 <p>具体实现方式如下：</p>
 <a id="more"></a>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.equals = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!arr) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.length !== arr.length) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(<span class="built_in">this</span>[i]) &amp;&amp; <span class="built_in">Array</span>.isArray(arr[i])) &#123;</span><br><span class="line">      <span class="comment">// 如果递归时 i 中其中有一项返回 false，即直接返回 false</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="built_in">this</span>[i].equals(arr[i])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>[i] !== arr[i]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="string">&quot;a&quot;</span>, [<span class="string">&quot;b&quot;</span>, [<span class="string">&quot;c&quot;</span>], <span class="string">&quot;d&quot;</span>]];</span><br><span class="line"><span class="keyword">const</span> a2 = [<span class="string">&quot;a&quot;</span>, [<span class="string">&quot;b&quot;</span>, [<span class="string">&quot;c&quot;</span>], <span class="string">&quot;d&quot;</span>]];</span><br><span class="line"><span class="keyword">const</span> a3 = [<span class="number">1</span>, <span class="string">&quot;2&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> a4 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a1.equals(a2)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a3.equals(a4)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.equals = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!arr) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.length !== arr.length) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(<span class="built_in">this</span>[i]) &amp;&amp; <span class="built_in">Array</span>.isArray(arr[i])) &#123;</span><br><span class="line">      <span class="comment">// 如果递归时 i 中其中有一项返回 false，即直接返回 false</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="built_in">this</span>[i].equals(arr[i])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>[i] !== arr[i]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置原型上的 equals 方法为不可枚举</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">Array</span>.prototype, <span class="string">&quot;equals&quot;</span>, &#123;</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="string">&quot;a&quot;</span>, [<span class="string">&quot;b&quot;</span>, [<span class="string">&quot;c&quot;</span>], <span class="string">&quot;d&quot;</span>]];</span><br><span class="line"><span class="keyword">const</span> a2 = [<span class="string">&quot;a&quot;</span>, [<span class="string">&quot;b&quot;</span>, [<span class="string">&quot;c&quot;</span>], <span class="string">&quot;d&quot;</span>]];</span><br><span class="line"><span class="keyword">const</span> a3 = [<span class="number">1</span>, <span class="string">&quot;2&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> a4 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a1.equals(a2)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a3.equals(a4)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <h4 id="计算对象的最大层数"><a href="#计算对象的最大层数" class="headerlink" title="计算对象的最大层数"></a>计算对象的最大层数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  a: <span class="string">&quot;a&quot;</span>,</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: &#123;</span><br><span class="line">      d: <span class="string">&quot;d&quot;</span>,</span><br><span class="line">      e: <span class="string">&quot;e&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  f: &#123;</span><br><span class="line">    g: &#123;</span><br><span class="line">      h: &#123;</span><br><span class="line">        i: <span class="string">&quot;i&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLevel</span>(<span class="params">obj = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="function">(<span class="params">param, level = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> param === <span class="string">&quot;object&quot;</span> &amp;&amp; param !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="built_in">Object</span>.values(param).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> item === <span class="string">&quot;object&quot;</span> &amp;&amp; item !== <span class="literal">null</span>) &#123;</span><br><span class="line">          fn(item, level + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> (result = level + <span class="number">1</span> &gt; result ? level + <span class="number">1</span> : result);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result = level &gt; result ? level : result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  fn(obj);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
@@ -862,18 +862,6 @@
             <ul class="article-tag-list" id="tags-list" q-show="showTags">
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
               
@@ -906,7 +894,19 @@
               </li>
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">dva</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -919,6 +919,14 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -950,27 +958,7 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">File</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WPS</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -979,6 +967,22 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">File</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WPS</a>
               </li>
               
               <div class="clearfix"></div>
