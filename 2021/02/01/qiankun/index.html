@@ -18,11 +18,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dnhyxc.gitee.io/2021/02/01/qiankun/c3.png">
 <meta property="article:published_time" content="2021-02-01T13:02:06.000Z">
-<meta property="article:modified_time" content="2022-05-03T17:53:54.933Z">
+<meta property="article:modified_time" content="2022-05-26T00:38:00.377Z">
 <meta property="article:author" content="dnhyxc">
+<meta property="article:tag" content="webpack">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="dva">
-<meta property="article:tag" content="webpack">
 <meta property="article:tag" content="eslint">
 <meta property="article:tag" content="qiankun">
 <meta property="article:tag" content="TypeScript">
@@ -506,9 +506,18 @@
 <p>2、<strong>各个子应用可以独立开发独立部署</strong>：微应用仓库独立，前后端可独立开发，部署完成后主框架自动完成同步更新。</p>
 <p>3、<strong>增量升级：在面对各种复杂场景时</strong>，我们通常很难对一个已经存在的系统做全量的技术栈升级或重构，而微前端是一种非常好的实施渐进式重构的手段和策略。</p>
 <p>4、<strong>独立运行时</strong>：每个微应用之间状态隔离，运行时状态不共享。</p>
-<h4 id="微前端能解决什么问题"><a href="#微前端能解决什么问题" class="headerlink" title="微前端能解决什么问题"></a>微前端能解决什么问题</h4><h5 id="拆分和细化"><a href="#拆分和细化" class="headerlink" title="拆分和细化"></a>拆分和细化</h5><p>1、基于业务来拆分应用。每个应用都有一个自己的仓库，<strong>独立开发</strong>、<strong>独立部署</strong>、<strong>独立访问</strong>、<strong>独立维护</strong>，还可以根据团队的特点自主选择适合自己的技术栈，极大的提升了开发人员的效率和体验，甚至隔壁团队误发布了一个半成品或有问题的特性也无关紧要。如果一个微前端已经准备好发布了，它就应该随时可发布，并且只由开发维护它的团队来定。</p>
-<h5 id="整合历史系统"><a href="#整合历史系统" class="headerlink" title="整合历史系统"></a>整合历史系统</h5><p>1、在不少的业务中，或多或少会存在一些历史项目，介于日常运营，这些系统需要结合到新框架中来使用还不能抛弃，对此我们也没有理由浪费时间和精力重写旧的逻辑。而微前端可以将这些系统进行整合，在基本不修改来逻辑的同时来同时兼容新老两套系统并行运行。</p>
-<h5 id="技术栈无关"><a href="#技术栈无关" class="headerlink" title="技术栈无关"></a>技术栈无关</h5><p>1、通过基座应用，可以融合 vue，react，angla，或者 js 开发的子项目。</p>
+<h4 id="微前端能解决什么问题"><a href="#微前端能解决什么问题" class="headerlink" title="微前端能解决什么问题"></a>微前端能解决什么问题</h4><p>1、拆分和细化：</p>
+<ul>
+<li>基于业务来拆分应用。每个应用都有一个自己的仓库，<strong>独立开发</strong>、<strong>独立部署</strong>、<strong>独立访问</strong>、<strong>独立维护</strong>，还可以根据团队的特点自主选择适合自己的技术栈，极大的提升了开发人员的效率和体验，甚至隔壁团队误发布了一个半成品或有问题的特性也无关紧要。如果一个微前端已经准备好发布了，它就应该随时可发布，并且只由开发维护它的团队来定。</li>
+</ul>
+<p>2、整合历史系统：</p>
+<ul>
+<li>在不少的业务中，或多或少会存在一些历史项目，介于日常运营，这些系统需要结合到新框架中来使用还不能抛弃，对此我们也没有理由浪费时间和精力重写旧的逻辑。而微前端可以将这些系统进行整合，在基本不修改来逻辑的同时来同时兼容新老两套系统并行运行。</li>
+</ul>
+<p>3、技术栈无关</p>
+<ul>
+<li>通过基座应用，可以融合 vue，react，angla，或者 js 开发的子项目。</li>
+</ul>
 <h4 id="实现微前端常用的技术方案"><a href="#实现微前端常用的技术方案" class="headerlink" title="实现微前端常用的技术方案"></a>实现微前端常用的技术方案</h4><h5 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h5><p>1、iframe 作为一项非常古老的技术，也可以用于实现微前端。通过 iframe，可以很方便的将一个应用嵌入到另一个应用中，而且两个应用之间的 css 和 javascript 是相互隔离的，不会互相干扰。</p>
 <p>2、iframe 的优点：</p>
 <ul>
@@ -690,7 +699,7 @@
 </blockquote>
 <p>5、fetchResource.js：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fetchResource = <span class="function">(<span class="params">url</span>) =&gt;</span> fetch(url).then(<span class="function">(<span class="params">res</span>) =&gt;</span> res.text());</span><br></pre></td></tr></table></figure>
-<h4 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h4><h5 id="加载子应用资源"><a href="#加载子应用资源" class="headerlink" title="加载子应用资源"></a>加载子应用资源</h5><p>1、基于 single-spa，qiankun 进行了一次封装，给出了一个更完整的应用加载方案，并将应用加载的功能装成了 npm 插件 <strong>import-html-entry</strong>。</p>
+<h3 id="相关源码"><a href="#相关源码" class="headerlink" title="相关源码"></a>相关源码</h3><h4 id="加载子应用资源"><a href="#加载子应用资源" class="headerlink" title="加载子应用资源"></a>加载子应用资源</h4><p>1、基于 single-spa，qiankun 进行了一次封装，给出了一个更完整的应用加载方案，并将应用加载的功能装成了 npm 插件 <strong>import-html-entry</strong>。</p>
 <ul>
 <li>该方案的主要思路是允许以 html 文件为应用入口，然后通过一个 html 解析器从文件中提取 js 和 css 依赖，并通过 fetch 下载依赖，于是在 qiankun 中你可以这样配置入口：</li>
 </ul>
@@ -698,7 +707,7 @@
 <ul>
 <li>qiankun 会通过 import-html-entry 请求 <code>http://localhost:8686</code>，得到对应的 html 文件，解析内部的所有 script 和 style 标签，依次下载和执行它们，这使得应用加载变得更易用。</li>
 </ul>
-<h5 id="import-html-entry-源码实现"><a href="#import-html-entry-源码实现" class="headerlink" title="import-html-entry 源码实现"></a>import-html-entry 源码实现</h5><p>1、import-html-entry 暴露出的核心接口是 importHTML，用于加载 html 文件，它支持两个参数：</p>
+<h4 id="import-html-entry-源码实现"><a href="#import-html-entry-源码实现" class="headerlink" title="import-html-entry 源码实现"></a>import-html-entry 源码实现</h4><p>1、import-html-entry 暴露出的核心接口是 importHTML，用于加载 html 文件，它支持两个参数：</p>
 <ul>
 <li><p>url：要加载的文件地址，一般是服务中 html 的地址。</p>
 </li>
@@ -733,7 +742,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scripts是解析html后得到的&lt;scripts&gt;标签的url的数组</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="title">getExternalScripts</span>(<span class="params">scripts, fetch = defaultFetch</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.all(scripts.map(<span class="function"><span class="params">script</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fetch(scriptUrl).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> response.text();</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>5、execScripts 是实现 js 隔离的核心方法，可以通过给定的一个假 window 来执行所有 script 标签的脚本，这样就是真正模拟了浏览器执行 script 标签的行为。伪代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="title">execScripts</span>(<span class="params">proxy</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// 上面的getExternalScripts加载得到的&lt;scripts&gt;标签的内容</span></span><br><span class="line">  <span class="keyword">const</span> scriptsTexts = <span class="keyword">await</span> getExternalScripts(scripts)</span><br><span class="line">  <span class="built_in">window</span>.proxy = proxy;</span><br><span class="line">  <span class="comment">// 模拟浏览器，按顺序执行script</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> scriptsText <span class="keyword">of</span> scriptsTexts) &#123;</span><br><span class="line">    <span class="comment">// 调整sourceMap的地址，否则sourceMap失效</span></span><br><span class="line">    <span class="keyword">const</span> sourceUrl = <span class="string">&#x27;//# sourceURL=$&#123;scriptSrc&#125;\n&#x27;</span>;</span><br><span class="line">    <span class="comment">// 通过iife把proxy替换为window, 通过eval来执行这个script</span></span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">`</span></span><br><span class="line"><span class="string">      ;(function(window, self)&#123;</span></span><br><span class="line"><span class="string">        ;<span class="subst">$&#123;scriptText&#125;</span></span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;sourceUrl&#125;</span></span></span><br><span class="line"><span class="string">      &#125;).bind(window.proxy)(window.proxy, window.proxy);</span></span><br><span class="line"><span class="string">    `</span>;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="js-隔离机制"><a href="#js-隔离机制" class="headerlink" title="js 隔离机制"></a>js 隔离机制</h5><p>1、js 隔离机制是通过 execScripts 方法实现的，部分核心源码如下：</p>
+<h4 id="js-隔离机制"><a href="#js-隔离机制" class="headerlink" title="js 隔离机制"></a>js 隔离机制</h4><p>1、js 隔离机制是通过 execScripts 方法实现的，部分核心源码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">execScripts</span>(<span class="params">entry, scripts, proxy = <span class="built_in">window</span>, opts = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  ... <span class="comment">// 初始化参数</span></span><br><span class="line">  <span class="keyword">return</span> getExternalScripts(scripts, fetch, error)</span><br><span class="line">	.then(<span class="function"><span class="params">scriptsText</span> =&gt;</span> &#123;</span><br><span class="line">	  <span class="comment">// 在proxy对象下执行脚本的方法</span></span><br><span class="line">	  <span class="keyword">const</span> geval = <span class="function">(<span class="params">scriptSrc, inlineScript</span>) =&gt;</span> &#123;</span><br><span class="line">	    <span class="keyword">const</span> rawCode = beforeExec(inlineScript, scriptSrc) || inlineScript;</span><br><span class="line">	    <span class="keyword">const</span> code = getExecutableScript(scriptSrc, rawCode, proxy, strictGlobal);</span><br><span class="line">        (<span class="number">0</span>, <span class="built_in">eval</span>)(code);</span><br><span class="line">        afterExec(inlineScript, scriptSrc);</span><br><span class="line">	  &#125;;</span><br><span class="line">	  <span class="comment">// 执行单个脚本的方法</span></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">exec</span>(<span class="params">scriptSrc, inlineScript, resolve</span>) </span>&#123; ... &#125;</span><br><span class="line">      <span class="comment">// 排期函数，负责逐个执行脚本</span></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">schedule</span>(<span class="params">i, resolvePromise</span>) </span>&#123; ... &#125;</span><br><span class="line">      <span class="comment">// 启动排期函数，执行脚本</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> schedule(<span class="number">0</span>, success || resolve));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这个函数的关键是定义了三个函数：geval、exec、schedule，其中实现 js 隔离的是 geval 函数内调用的 getExecutableScript 函数。可以看出，在调这个函数时，会把外部传入的 proxy 作为参数传入了进去，而它返回的是一串新的脚本字符串，这段新的字符串内的 window 已经被 proxy 替代，具体实现逻辑如下：</li>
@@ -754,7 +763,7 @@
 <li><p>在 IE 下，由于 proxy 不被支持，并且没有可用的 polyfill，所以 qiankun 退而求其次，采用快照策略实现 js 隔离。它的大致思路是，在加载应用前，将 window 上的所有属性保存起来（即拍摄快照）；等应用被卸载时，再恢复 window 上的所有属性，这样也可以防止全局污染。但是当页面同时存在多个应用实例时，qiankun 无法将其隔离开，所以 IE 下的快照策略无法支持多实例模式。</p>
 </li>
 </ul>
-<h5 id="css-隔离机制"><a href="#css-隔离机制" class="headerlink" title="css 隔离机制"></a>css 隔离机制</h5><p>1、qiankun 主要提供了两种样式隔离方案，一种是基于 shadowDom 的；另一种则是实验性的，思路类似于 Vue 中的 scoped 属性，给每个子应用的根节点添加一个特殊属性，用作对所有 css 选择器的约束。</p>
+<h4 id="css-隔离机制"><a href="#css-隔离机制" class="headerlink" title="css 隔离机制"></a>css 隔离机制</h4><p>1、qiankun 主要提供了两种样式隔离方案，一种是基于 shadowDom 的；另一种则是实验性的，思路类似于 Vue 中的 scoped 属性，给每个子应用的根节点添加一个特殊属性，用作对所有 css 选择器的约束。</p>
 <p>2、开启样式隔离的语法如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">registerMicroApps(&#123;</span><br><span class="line">  name: <span class="string">&#x27;app1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">  sandbox: &#123;</span><br><span class="line">    strictStyleIsolation: <span class="literal">true</span> <span class="comment">// 使用 shadow dom 进行样式隔离</span></span><br><span class="line">    <span class="comment">// experimentalStyleIsolation: true // 通过添加选择器范围来解决样式冲突</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <ul>
@@ -772,6 +781,8 @@
 <ul>
 <li>经过上述替换，这个样式就只能在当前子应用内生效了。虽然该方案已经提出很久了，但仍然是实验性的，因为它不支持 @keyframes，@font-face，@import，@page（即不会被重写）。</li>
 </ul>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh/guide">quankun 官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://micro-zoe.github.io/micro-app/docs.html#/">MicroApp 官网</a></p>
 
       
 
@@ -792,7 +803,7 @@
     2021-02-01
   <br>
   <strong class="update-time">最后更新：</strong>
-  2022-05-04
+  2022-05-26
   <br>
   <strong class="article-titles">本文标题：</strong>
   <a href="https://dnhyxc.gitee.io/2021/02/01/qiankun/" title="qiankun" target="_blank">qiankun</a>
@@ -851,7 +862,7 @@
     <div class="article-toc">
       <div class="toc-header">目录</div>
       <div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">微前端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">什么是微前端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">微前端的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">微前端能解决什么问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E5%92%8C%E7%BB%86%E5%8C%96"><span class="toc-number">1.4.1.</span> <span class="toc-text">拆分和细化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E5%8E%86%E5%8F%B2%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.4.2.</span> <span class="toc-text">整合历史系统</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%E6%97%A0%E5%85%B3"><span class="toc-number">1.4.3.</span> <span class="toc-text">技术栈无关</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">实现微前端常用的技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe"><span class="toc-number">1.5.1.</span> <span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#single-spa"><span class="toc-number">1.5.2.</span> <span class="toc-text">single-spa</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#qiankun"><span class="toc-number">1.5.3.</span> <span class="toc-text">qiankun</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-1"><span class="toc-number">2.</span> <span class="toc-text">qiankun</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">qiankun 简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">qiankun 主子应用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%BA%94%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">主应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React-%E5%AD%90%E5%BA%94%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">React 子应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">Vue 子应用配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%80%9A%E4%BF%A1%E8%AF%B4%E6%98%8E"><span class="toc-number">3.4.</span> <span class="toc-text">主子应用通信说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">主子应用全局状态管理配置方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.6.</span> <span class="toc-text">具体配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">qiankun 实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.1.</span> <span class="toc-text">qiankun 实现的四个步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">具体手写实现代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E7%A0%81"><span class="toc-number">4.3.</span> <span class="toc-text">相关源码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%AD%90%E5%BA%94%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">4.3.1.</span> <span class="toc-text">加载子应用资源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#import-html-entry-%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">import-html-entry 源码实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#js-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">4.3.3.</span> <span class="toc-text">js 隔离机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#css-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">4.3.4.</span> <span class="toc-text">css 隔离机制</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">微前端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">什么是微前端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">微前端的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">微前端能解决什么问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">实现微前端常用的技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe"><span class="toc-number">1.5.1.</span> <span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#single-spa"><span class="toc-number">1.5.2.</span> <span class="toc-text">single-spa</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#qiankun"><span class="toc-number">1.5.3.</span> <span class="toc-text">qiankun</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-1"><span class="toc-number">2.</span> <span class="toc-text">qiankun</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">qiankun 简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">qiankun 主子应用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%BA%94%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">主应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React-%E5%AD%90%E5%BA%94%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">React 子应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">Vue 子应用配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%80%9A%E4%BF%A1%E8%AF%B4%E6%98%8E"><span class="toc-number">3.4.</span> <span class="toc-text">主子应用通信说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">主子应用全局状态管理配置方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.6.</span> <span class="toc-text">具体配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">qiankun 实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.1.</span> <span class="toc-text">qiankun 实现的四个步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">具体手写实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">相关源码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%AD%90%E5%BA%94%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">5.1.</span> <span class="toc-text">加载子应用资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#import-html-entry-%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.2.</span> <span class="toc-text">import-html-entry 源码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">5.3.</span> <span class="toc-text">js 隔离机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">5.4.</span> <span class="toc-text">css 隔离机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">6.</span> <span class="toc-text">参考文档</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -869,15 +880,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dva</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -975,7 +986,7 @@
       <div class="tooltip tooltip-east">
         <div class="tooltip-content tooltip-toc" style="background-image: linear-gradient(to top, #23262e 0%, #23262e 100%);">
           <div class="toc-article">
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">微前端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">什么是微前端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">微前端的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">微前端能解决什么问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E5%92%8C%E7%BB%86%E5%8C%96"><span class="toc-number">1.4.1.</span> <span class="toc-text">拆分和细化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E5%8E%86%E5%8F%B2%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.4.2.</span> <span class="toc-text">整合历史系统</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%E6%97%A0%E5%85%B3"><span class="toc-number">1.4.3.</span> <span class="toc-text">技术栈无关</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">实现微前端常用的技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe"><span class="toc-number">1.5.1.</span> <span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#single-spa"><span class="toc-number">1.5.2.</span> <span class="toc-text">single-spa</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#qiankun"><span class="toc-number">1.5.3.</span> <span class="toc-text">qiankun</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-1"><span class="toc-number">2.</span> <span class="toc-text">qiankun</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">qiankun 简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">qiankun 主子应用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%BA%94%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">主应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React-%E5%AD%90%E5%BA%94%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">React 子应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">Vue 子应用配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%80%9A%E4%BF%A1%E8%AF%B4%E6%98%8E"><span class="toc-number">3.4.</span> <span class="toc-text">主子应用通信说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">主子应用全局状态管理配置方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.6.</span> <span class="toc-text">具体配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">qiankun 实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.1.</span> <span class="toc-text">qiankun 实现的四个步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">具体手写实现代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E7%A0%81"><span class="toc-number">4.3.</span> <span class="toc-text">相关源码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%AD%90%E5%BA%94%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">4.3.1.</span> <span class="toc-text">加载子应用资源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#import-html-entry-%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">import-html-entry 源码实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#js-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">4.3.3.</span> <span class="toc-text">js 隔离机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#css-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">4.3.4.</span> <span class="toc-text">css 隔离机制</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">微前端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">什么是微前端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">微前端的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">微前端能解决什么问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">实现微前端常用的技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe"><span class="toc-number">1.5.1.</span> <span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#single-spa"><span class="toc-number">1.5.2.</span> <span class="toc-text">single-spa</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#qiankun"><span class="toc-number">1.5.3.</span> <span class="toc-text">qiankun</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-1"><span class="toc-number">2.</span> <span class="toc-text">qiankun</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">qiankun 简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">qiankun 主子应用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%BA%94%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">主应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React-%E5%AD%90%E5%BA%94%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">React 子应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-%E5%AD%90%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">Vue 子应用配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E9%80%9A%E4%BF%A1%E8%AF%B4%E6%98%8E"><span class="toc-number">3.4.</span> <span class="toc-text">主子应用通信说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%90%E5%BA%94%E7%94%A8%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">主子应用全局状态管理配置方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.6.</span> <span class="toc-text">具体配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">qiankun 实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qiankun-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.1.</span> <span class="toc-text">qiankun 实现的四个步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">具体手写实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">相关源码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%AD%90%E5%BA%94%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">5.1.</span> <span class="toc-text">加载子应用资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#import-html-entry-%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.2.</span> <span class="toc-text">import-html-entry 源码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">5.3.</span> <span class="toc-text">js 隔离机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6"><span class="toc-number">5.4.</span> <span class="toc-text">css 隔离机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">6.</span> <span class="toc-text">参考文档</span></a></li></ol>
           </div>
         </span>
       </div>
@@ -1180,7 +1191,23 @@
             <ul class="article-tag-list" id="tags-list" q-show="showTags">
               
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+              
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1196,35 +1223,11 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">class</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">super</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">browser</a>
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Typora</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">dva</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1244,7 +1247,23 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+                <a href="javascript:void(0)" class="js-tag color1">class</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">super</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">H5</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1264,10 +1283,6 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H5</a>
-              </li>
-              
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">qiankun</a>
               </li>
               
@@ -1276,7 +1291,15 @@
               </li>
               
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">File</a>
+              </li>
+              
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
               
               <li class="article-tag-list-item">
@@ -1285,18 +1308,6 @@
               
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Vue3</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">File</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-              
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
               
               <li class="article-tag-list-item">
